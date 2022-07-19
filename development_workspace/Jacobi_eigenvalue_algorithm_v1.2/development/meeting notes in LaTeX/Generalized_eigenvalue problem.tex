@@ -1,0 +1,222 @@
+\documentclass[11pt,letterpaper,twocolumn]{article}
+
+\usepackage{mathptmx} % added for time new roman font
+\usepackage[left=1in,right=1in,top=1in,bottom=1in]{geometry}
+
+\usepackage[latin1]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}        % ADDED FOR TABLES    
+\usepackage{placeins}        % Added for \FloatBarrier
+\usepackage{enumitem}        % Added for changes in \item
+\usepackage{commath}         % added for \norm 
+\usepackage{wrapfig}
+\usepackage{tabu}
+%set page header and footer
+
+\usepackage{titlesec}
+\titlespacing*{\section}
+{0pt}{1.5ex}{1ex}
+\titlespacing*{\subsection}
+{0pt}{1ex}{0.8ex}
+\titlespacing*{\subsubsection}
+{0pt}{0.8ex}{0.4ex}
+
+\usepackage{color} % color added for editing
+\newcommand{\bl}[1]{\textcolor[rgb]{0.00,0.00,1.00}{#1}}
+\newcommand{\gr}[1]{\textcolor[rgb]{0.00,0.50,0.00}{#1}}
+\newcommand{\rd}[1]{\textcolor[rgb]{0.75,0.00,0.00}{#1}}
+
+\title{Generalized Eigenvalue Problem}
+\date{}
+
+
+\begin{document}
+
+\maketitle
+
+\noindent The generalized eigenvalue problem of two symmetric matrices  ${\bf K}={\bf K}^T$ and ${\bf M}={\bf M}^T$:
+
+\begin{equation}
+{\bf K}\Phi=\lambda{\bf M}\Phi
+\end{equation}
+
+\noindent Cholesky factorization leads to: 
+\begin{equation}
+{\bf M} = {\bf L}{\bf L}^T
+\end{equation}
+The  generalized eigenvalue problem can be reduced to:
+
+\begin{equation}
+{\bf C}y = \lambda y
+\end{equation}
+\noindent where: 
+\begin{equation}
+{\bf C} ={\bf L}^{-1} {\bf K} {\bf L}^{-T}
+\end{equation}
+
+Given that ${\bf C}$ is a symmetric matrix, its eigenvalues can be solved for using the Exact Jacobi Method. This is done by reducing the norm of the off diagonal elements:
+\begin{equation}
+F({\bf C}) = \sqrt{\sum_{i=1}^{n}\sum_{j=1,j \ne i}^{n}c_{ij}^2 }
+\end{equation}
+\noindent This is achomplished by a sequence of orhogonal similarity transformations:
+\begin{equation}
+{\bf C}^{(K+1)} = {\bf J}^T_{pq}{\bf C}^K{\bf J}_{pq}, \hspace{1cm} k=0,1,2,...
+\end{equation}
+\noindent where:
+\begin{equation}
+{\bf C}^{0} = {\bf C}
+\end{equation}
+
+
+
+%
+%\pagebreak
+%The generalized eigenvalue problem of two symmetric matrices  ${\bf A}={\bf A}^T$ and ${\bf B}={\bf B}^T$ is to find a scalar $\lambda$ and the corresponding vector $\Phi$ for the following equation to hold: 
+%
+%\begin{equation}
+%{\bf A}\Phi_i=\lambda_i{\bf B}\Phi_i, \;\;\;\;\;\;\;(i=1,\cdots,n)
+%\end{equation}
+%
+%\noindent or in matrix form 
+%\begin{equation}
+%{\bf A}\Phi={\bf B}\Phi\Lambda
+%\end{equation}
+%
+%\noindent where the matrixies represent
+%
+%\begin{itemize}
+%\item $\Lambda$ = eigenvalue
+%\item $\Phi$ = eigenvector
+%\item \textbf{A} = \textbf{K} matirx in the final problem
+%\item \textbf{B} = \textbf{M} matirx in the final problem
+%\end{itemize}
+%
+% The eigenvalue and eigenvector matrices $\Lambda$ and $\Phi$ can be found in the following steps:
+%
+%\section{Solve the eigenvalue problem of ${\bf B}$}
+%Solve the eigenvalue problem of ${\bf B}$ to find its diagonal eigenvalue matrix $\Lambda_B$ and orthogonal eigenvector matrix  
+%\begin{equation}
+%\Phi_B=(\Phi_B^T)^{-1}
+%\end{equation}
+%\noindent so that 
+%\begin{equation}
+%{\bf B}\Phi_B=\Phi_B\Lambda_B
+%\end{equation}
+%\noindent or 
+%\begin{equation}
+%\Phi_B^{-1}{\bf B}\Phi_B = \Phi_B^{T}{\bf B}\Phi_B = \Lambda_B
+%\end{equation}
+%
+%
+%\section{Multiplying both sides of the second equation above by  $\Lambda^{-1/2}$}
+%
+%Left and right multiplying both sides of the second equation above by  $\Lambda^{-1/2}$ (whitening) we get 
+%\begin{equation}
+%\Lambda^{-1/2}_B (\Phi_B^T{\bf B}\Phi_B)\Lambda_B^{-1/2}      =    \Lambda^{-1/2}_B    \Lambda_B\Lambda^{-1/2}_B={\bf I}
+%\end{equation}
+%
+%\noindent We define 
+%\begin{equation}
+%\Phi'_B=\Phi_B\Lambda^{-1/2}_B
+%\end{equation}
+%
+%\noindent and get 
+%\begin{equation}
+%(\Phi'_B)^T{\bf B}\Phi'_B={\bf I}
+%\end{equation}
+%
+%\noindent Note that $\Phi_B'$ is not orthogonal 
+%\begin{equation}
+%(\Phi')^{-1}_B=(\Phi_B\Lambda^{-1/2}_B)^{-1} = \Lambda_B^{1/2}\Phi_B^{-1}  = \Lambda_B^{1/2}\Phi_B^{T} \ne \Lambda^{-1/2}_B\Phi^T_B=\Phi^T_B
+%\end{equation}
+%
+%\section{Apply the same transform to ${\bf A}$}
+%Apply the same transform to ${\bf A}$: 
+%\begin{equation}
+%(\Phi'_B)^T{\bf A}\Phi'_B =(\Lambda^{-1/2}_B \Phi_B^T){\bf A}(\Phi_B\Lambda^{-1/2}_B) ={\bf A}'
+%\end{equation}
+%
+%\noindent Note that ${\bf A}'$ is symmetric as well as ${\bf A}$: 
+%\begin{equation}
+%{\bf A}'^T = (\Phi_B'^T {\bf A} \Phi_B')^T =\Phi_B'^T{\bf A}\Phi'_B={\bf A}' 
+%\end{equation}
+%
+%\section{Diagonalize ${\bf A}'$}
+%As ${\bf A}'$ is symmetric,, it can be diagonalized by its orthogonal eigenvector matrix $\Phi_A$: 
+%
+%\begin{equation}
+%\Phi_A^T{\bf A}'\Phi_A=\Lambda
+%\end{equation}
+%
+%\noindent i.e., 
+%
+%\begin{equation}
+%\Phi_A^T (\Lambda^{-1/2}_B\Phi_B^T{\bf A}\Phi_B\Lambda^{-1/2}_B)\Phi_A	 = (\Phi_A^T \Lambda^{-1/2}_B\Phi_B^T){\bf A}( \Phi_B\Lambda^{-1/2}_B \Phi_A) = \Phi^T {\bf A}\Phi =\Lambda
+%\end{equation}
+%
+%\noindent where we have defined 
+%\begin{equation}
+%\Phi=\Phi_B\Lambda^{-1/2}_B\Phi_A
+%\end{equation}
+%
+%\noindent which is not orthogonal: 
+%\begin{equation}
+%\Phi^{-1}=(\Phi_B\Lambda^{-1/2}_B\Phi_A)^{-1} = \Phi_A^T\Lambda^{-1/2}_B\Phi_B^{-1}=\Phi_A^T\Lambda^{1/2}_B\Phi_B^T \ne \Phi_A^T\Lambda^{-1/2}_B\Phi_B^T = \Phi^T
+%\end{equation}
+%
+%\section{This $\Phi$ also diagonalizes ${\bf B}$: }
+%This $\Phi$ also diagonalizes ${\bf B}$: 
+%
+%\begin{equation}
+%\Phi^T{\bf B}\Phi =  (\Phi_B\Lambda^{-1/2}_B\Phi_A)^T {\bf B}(\Phi_B\Lambda_B^{-1/2}\Phi_A) = \Phi^T_A (\Phi_B^T\Lambda^{-1/2}_B{\bf B}\Phi_B)\Lambda^{-1/2}_B\Phi_A = \Phi_A^T\Lambda^{-1/2}_B\Lambda_B\Lambda^{-1/2}_B\Phi_A =\Phi_A^T\Phi_A={\bf I}
+%\end{equation}
+%
+%\section{Now we have}
+%Now we have 
+%\begin{equation}
+%\left\{ \begin{array}{l} \Phi^T{\bf A}\Phi=\Lambda\\
+%\Phi^T{\bf B}\Phi={\bf I}\end{array}\right.
+%\end{equation}
+%
+%\noindent Right multiplying both sides of the second equation by $\Lambda$ and equating the left-hand side to that of the first equation, we get 
+%\begin{equation}
+%{\bf A}\Phi={\bf B}\Phi\Lambda
+%\end{equation}
+%
+%\noindent i.e., $\Lambda$ and $\Phi$ are the eigenvalue and eigenvector matrices of the generalized eigenvalue problem. Note, however, as shown above, $\Phi$ is not orthogonal.
+%The Rayleigh quotient of two symmetric matrices ${\bf A}$ and ${\bf B}$ is a function of a vector ${\bf w}$ defined as: 
+%
+%\begin{equation}
+%R({\bf w})=\frac{{\bf w}^T{\bf A}{\bf w}}{{\bf w}^T{\bf B}{\bf w}}
+%\end{equation}
+%
+%To find the optimal ${\bf w}$ corresponding to the extremum (maximum or minimum) of $R({\bf w})$, we find its derivative with respect to ${\bf w}$: 
+%\begin{equation}
+%\frac{d}{d{\bf w}}R({\bf w}) =\frac{2{\bf A}{\bf w}({\bf w}^T{\bf B}{\bf w}) -2 {\bf B}{\bf w} ({\bf w}^T{\bf A}{\bf w})}{({\bf w}^T{\bf B}{\bf w})^2}
+%\end{equation}
+%
+%\noindent Setting it to zero we get 
+%\begin{equation}
+%{\bf A}{\bf w}({\bf w}^T{\bf B}{\bf w})={\bf B}{\bf w}({\bf w}^T{\bf A}{\bf w}) 
+%\end{equation}
+%
+%\noindent i.e.,
+%
+%\begin{equation}
+% {\bf A}{\bf w} \frac{{\bf w}^T{\bf A}{\bf w}}{{\bf w}^T{\bf B}{\bf w}}   {\bf B}{\bf w} = R({\bf w}){\bf B}{\bf w}=\lambda {\bf B}{\bf w}
+%\end{equation}
+%
+%
+%\noindent The second equation can be recognized as a generalized eigenvalue problem with  $\lambda=R({\bf w})$ being the eigenvalue and and ${\bf w}$ the corresponding eigenvector. Solving this we get the vector ${\bf w}=\Phi$ corresponding to the maximum/minimum eigenvalue $\lambda=R({\bf w})$, which maximizes/minimizes the Rayleigh quotient.
+
+
+
+
+
+
+
+
+\end{document}

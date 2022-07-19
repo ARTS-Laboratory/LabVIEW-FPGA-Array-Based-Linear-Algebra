@@ -1,0 +1,47 @@
+# Jacobi Eigenvalue algorithm 
+
+**NEVER FORGET** that there is a normalization to eigenvalues that has to be done, as eigenvalues are related to the eigenvectors. Different software packages do this differently. 
+1. LabVIEW, MATLAB, Python, and Jacobi do it the same way. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
